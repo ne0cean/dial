@@ -1,3 +1,7 @@
+# Node
+mcp/node_modules/
+mcp/package-lock.json
+
 # Build artifacts
 surface-dial/spm/.build/
 surface-dial/mac-dial/lib/hidapi/build/
@@ -9,3 +13,4 @@ surface-dial/mac-dial/lib/hidapi/build/
 # Xcode
 *.xcuserstate
 xcuserdata/
+.context/
