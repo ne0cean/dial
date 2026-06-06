@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>dial</h1>
+    <div class="header-right">
+      <button id="btn-save" class="btn-primary">Save & Apply</button>
+      <span id="status"></span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Surface Dial Panel -->
+    <section class="panel" id="panel-dial">
+      <div class="panel-header">
+        <h2>Surface Dial</h2>
+        <div class="app-selector">
+          <label>앱</label>
+          <select id="dial-app-select">
+            <option value="default">Default</option>
+          </select>
+          <button id="btn-add-app" class="btn-small">+ 앱 추가</button>
+          <button id="btn-remove-app" class="btn-small btn-danger" style="display:none">삭제</button>
+        </div>
+      </div>
+
+      <div class="dial-visual">
+        <div class="dial-event" id="de-cw" data-event="rotateClockwise">
+          <span class="arrow">↻</span>
+          <span class="label">Rotate CW</span>
+          <span class="action-preview" id="preview-cw"></span>
+        </div>
+
+        <div class="dial-circle" id="de-click" data-event="click">
+          <div class="dial-inner">
+            <span>Click</span>
+            <span class="action-preview" id="preview-click"></span>
+          </div>
+        </div>
+
+        <div class="dial-event" id="de-ccw" data-event="rotateCounterClockwise">
+          <span class="arrow">↺</span>
+          <span class="label">Rotate CCW</span>
+          <span class="action-preview" id="preview-ccw"></span>
+        </div>
+
+        <div class="dial-event" id="de-long" data-event="longPress">
+          <span class="arrow">⏺</span>
+          <span class="label">Long Press</span>
+          <span class="action-preview" id="preview-long"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Creator Micro Panel -->
+    <section class="panel" id="panel-micro">
+      <div class="panel-header">
+        <h2>Creator Micro</h2>
+        <div class="layer-tabs">
+          <button class="layer-tab active" data-layer="0">L0 System</button>
+          <button class="layer-tab" data-layer="1">L1 Terminal</button>
+          <button class="layer-tab" data-layer="2">L2 Dev</button>
+          <button class="layer-tab" data-layer="3">L3 Comms</button>
+        </div>
+      </div>
+
+      <div class="micro-layout">
+        <div class="encoders-top">
+          <div class="encoder" id="enc-L">
+            <div class="enc-label">EncL</div>
+            <div class="enc-actions">
+              <div class="enc-btn" data-enc="L" data-dir="cw">↻ CW<span class="action-preview"></span></div>
+              <div class="enc-btn" data-enc="L" data-dir="ccw">↺ CCW<span class="action-preview"></span></div>
+              <div class="enc-btn" data-enc="L" data-dir="click">● Click<span class="action-preview"></span></div>
+            </div>
+          </div>
+          <div class="encoder" id="enc-R">
+            <div class="enc-label">EncR</div>
+            <div class="enc-actions">
+              <div class="enc-btn" data-enc="R" data-dir="cw">↻ CW<span class="action-preview"></span></div>
+              <div class="enc-btn" data-enc="R" data-dir="ccw">↺ CCW<span class="action-preview"></span></div>
+              <div class="enc-btn" data-enc="R" data-dir="click">● Click<span class="action-preview"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-grid" id="key-grid">
+          <!-- 12 keys injected by JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Edit Panel -->
+  <aside id="edit-panel" class="edit-panel hidden">
+    <div class="edit-header">
+      <h3 id="edit-title">편집</h3>
+      <button id="edit-close">✕</button>
+    </div>
+    <div id="edit-body"></div>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

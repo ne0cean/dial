@@ -12,7 +12,7 @@ import {
 } from './keyboard.js';
 
 const server = new Server(
-  { name: 'mac-input-mapper', version: '1.0.0' },
+  { name: 'dial', version: '1.0.0' },
   { capabilities: { tools: {} } }
 );
 
@@ -155,4 +155,4 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
-console.error('[mac-input-mapper MCP] Server started');
+console.error('[dial MCP] Server started');

@@ -1,4 +1,4 @@
-# mac-input-mapper
+# dial
 
 Surface Dial + Work Louder Creator Micro macOS 커스텀 키 매핑 시스템.
 

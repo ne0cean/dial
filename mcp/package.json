@@ -1,5 +1,5 @@
 {
-  "name": "mac-input-mapper-mcp",
+  "name": "dial-mcp",
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
