@@ -1,0 +1,32 @@
+#!/bin/bash
+# Creator Micro VIA 설정 가이드
+
+PROFILE_PATH="$(cd "$(dirname "$0")/.." && pwd)/creator-micro/via-profiles/keymap.json"
+
+echo ""
+echo "=== Creator Micro VIA 설정 ==="
+echo ""
+echo "키보드가 USB-C로 연결된 상태에서:"
+echo ""
+echo "1. Chrome/Edge로 접속: https://usevia.app"
+echo "   (Firefox는 WebHID 미지원)"
+echo ""
+echo "2. [Authorize Device] 클릭 → Creator Micro (Micro Pad) 선택 → 연결"
+echo ""
+echo "3. 레이어 설정:"
+echo "   Layer 0 (System)  — 시스템 단축키"
+echo "   Layer 1 (Terminal)— 터미널 명령어 매크로 (★ 주 사용)"
+echo "   Layer 2 (Dev)     — VS Code / Antigravity"
+echo "   Layer 3 (Comms)   — KakaoTalk / Telegram"
+echo ""
+echo "4. 레이어 전환: 키12 홀드 → Layer 순환"
+echo ""
+echo "5. 레이어별 상세 레이아웃:"
+ls "$(dirname "$0")/../creator-micro/layer-docs/" 2>/dev/null | sed 's/^/   /'
+echo ""
+echo "6. 키맵 JSON 위치 (usevia.app Import 시 사용):"
+echo "   $PROFILE_PATH"
+echo ""
+echo "문제 발생 시:"
+echo "  VIA 연결 실패 → QMK Toolbox로 펌웨어 최신화 후 재시도"
+echo "  크롬 개발자도구 콘솔에서 WebHID 오류 확인"

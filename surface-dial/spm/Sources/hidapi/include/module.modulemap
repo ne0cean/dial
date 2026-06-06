@@ -1,0 +1,4 @@
+module hidapi {
+    header "hidapi.h"
+    export *
+}

@@ -1,0 +1,78 @@
+{
+  "_comment": "Surface Dial 앱별 모드 매핑. keyCode = macOS Virtual Key Code. modifiers: command/shift/control/option",
+  "default": {
+    "_comment": "미매핑 앱 전부에 적용. 회전 = 앱 전환 (Cmd+Tab), 클릭 = iTerm2 활성화, 롱프레스 = 화면 잠금",
+    "rotateClockwise":        { "type": "key",      "keyCode": 48, "modifiers": ["command"] },
+    "rotateCounterClockwise": { "type": "key",      "keyCode": 48, "modifiers": ["command", "shift"] },
+    "click":                  { "type": "activate", "bundleId": "com.googlecode.iterm2" },
+    "longPress":              { "type": "key",      "keyCode": 12, "modifiers": ["command", "control"] }
+  },
+  "apps": {
+    "com.google.Chrome": {
+      "_comment": "회전 = 탭 전환, 클릭 = 새 탭",
+      "rotateClockwise":        { "type": "key", "keyCode": 48, "modifiers": ["control"] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 48, "modifiers": ["control", "shift"] },
+      "click":                  { "type": "key", "keyCode": 17, "modifiers": ["command"] },
+      "longPress":              { "type": "key", "keyCode": 12, "modifiers": ["command", "control"] }
+    },
+    "com.apple.Terminal": {
+      "_comment": "회전 = 창 전환 (Ctrl+Tab), 클릭 = 화면 지우기",
+      "rotateClockwise":        { "type": "key", "keyCode": 48, "modifiers": ["control"] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 48, "modifiers": ["control", "shift"] },
+      "click":                  { "type": "key", "keyCode": 37, "modifiers": ["control"] },
+      "longPress":              { "type": "key", "keyCode": 12, "modifiers": ["command", "control"] }
+    },
+    "com.googlecode.iterm2": {
+      "_comment": "회전 = 탭/패널 전환 (Cmd+]/[), 클릭 = 화면 지우기 (Ctrl+L)",
+      "rotateClockwise":        { "type": "key", "keyCode": 30, "modifiers": ["command"] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 33, "modifiers": ["command"] },
+      "click":                  { "type": "key", "keyCode": 37, "modifiers": ["control"] },
+      "longPress":              { "type": "key", "keyCode": 12, "modifiers": ["command", "control"] }
+    },
+    "com.apple.finder": {
+      "_comment": "회전 = 파일 탐색 (Arrow), 클릭 = 열기 (Enter)",
+      "rotateClockwise":        { "type": "key", "keyCode": 125, "modifiers": [] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 126, "modifiers": [] },
+      "click":                  { "type": "key", "keyCode": 36,  "modifiers": [] },
+      "longPress":              { "type": "key", "keyCode": 12,  "modifiers": ["command", "control"] }
+    },
+    "com.microsoft.VSCode": {
+      "_comment": "회전 = 에디터 탭 전환 (Ctrl+Tab), 클릭 = 빠른 열기 (Cmd+P)",
+      "rotateClockwise":        { "type": "key", "keyCode": 48, "modifiers": ["control"] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 48, "modifiers": ["control", "shift"] },
+      "click":                  { "type": "key", "keyCode": 35, "modifiers": ["command"] },
+      "longPress":              { "type": "key", "keyCode": 12, "modifiers": ["command", "control"] }
+    },
+    "com.google.antigravity": {
+      "_comment": "회전 = 탭 전환 (Ctrl+Tab), 클릭 = 빠른 열기 (Cmd+P)",
+      "rotateClockwise":        { "type": "key", "keyCode": 48, "modifiers": ["control"] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 48, "modifiers": ["control", "shift"] },
+      "click":                  { "type": "key", "keyCode": 35, "modifiers": ["command"] },
+      "longPress":              { "type": "key", "keyCode": 12, "modifiers": ["command", "control"] }
+    },
+    "com.google.antigravity-ide": {
+      "rotateClockwise":        { "type": "key", "keyCode": 48, "modifiers": ["control"] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 48, "modifiers": ["control", "shift"] },
+      "click":                  { "type": "key", "keyCode": 35, "modifiers": ["command"] },
+      "longPress":              { "type": "key", "keyCode": 12, "modifiers": ["command", "control"] }
+    },
+    "com.kakao.KakaoTalkMac": {
+      "_comment": "회전 = 메시지 스크롤, 클릭 = Enter (전송)",
+      "rotateClockwise":        { "type": "key", "keyCode": 125, "modifiers": [] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 126, "modifiers": [] },
+      "click":                  { "type": "key", "keyCode": 36,  "modifiers": [] },
+      "longPress":              { "type": "key", "keyCode": 12,  "modifiers": ["command", "control"] }
+    },
+    "ru.keepcoder.Telegram": {
+      "rotateClockwise":        { "type": "key", "keyCode": 125, "modifiers": [] },
+      "rotateCounterClockwise": { "type": "key", "keyCode": 126, "modifiers": [] },
+      "click":                  { "type": "key", "keyCode": 36,  "modifiers": [] },
+      "longPress":              { "type": "key", "keyCode": 12,  "modifiers": ["command", "control"] }
+    }
+  },
+  "_keycodes": {
+    "Tab": 48, "Q": 12, "T": 17, "L": 37, "P": 35,
+    "]": 30, "[": 33, "ArrowDown": 125, "ArrowUp": 126, "Enter": 36,
+    "Cmd(left)": 55, "Escape": 53
+  }
+}

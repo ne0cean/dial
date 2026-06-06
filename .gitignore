@@ -1,0 +1,11 @@
+# Build artifacts
+surface-dial/spm/.build/
+surface-dial/mac-dial/lib/hidapi/build/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Xcode
+*.xcuserstate
+xcuserdata/

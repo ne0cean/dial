@@ -1,0 +1,3 @@
+[submodule "surface-dial/mac-dial"]
+	path = surface-dial/mac-dial
+	url = https://github.com/andreasjhkarlsson/mac-dial
