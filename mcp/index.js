@@ -93,6 +93,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       inputSchema: { type: 'object', properties: {} },
     },
     {
+      name: 'get_selection',
+      description: '웹 UI에서 현재 사용자가 클릭해서 선택한 요소를 반환합니다. 키 주입 전 반드시 호출하여 대상을 확인하세요.',
+      inputSchema: { type: 'object', properties: {} },
+    },
+    {
       name: 'macro_set',
       description: 'Creator Micro 매크로 슬롯에 텍스트 명령어를 설정합니다. (예: "git status\\n")',
       inputSchema: {
@@ -135,6 +140,11 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       case 'macro_get_all':
         result = macroGetAll();
         break;
+      case 'get_selection': {
+        const r = await fetch('http://localhost:3333/api/selection');
+        result = await r.json();
+        break;
+      }
       case 'macro_set':
         result = macroSetText(args.slot, args.text);
         break;

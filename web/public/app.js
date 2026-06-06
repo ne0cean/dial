@@ -164,11 +164,16 @@ function getLayer(idx) {
 
 // --- Selection & Edit Panel ---
 
+function postSelection(sel) {
+  fetch('/api/selection', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(sel) });
+}
+
 function selectDialEvent(el, eventKey) {
   clearSelection();
   el.classList.add('selected');
   selectedEl = el;
   selectedTarget = { type: 'dial', eventKey };
+  postSelection({ type: 'dial', app: currentDialApp, eventKey });
   const mode = currentDialApp === 'default'
     ? dialConfig.default || {}
     : dialConfig.apps?.[currentDialApp] || {};
@@ -180,6 +185,7 @@ function selectKey(el, idx) {
   el.classList.add('selected');
   selectedEl = el;
   selectedTarget = { type: 'key', idx };
+  postSelection({ type: 'key', layer: currentLayer, idx });
   const layer = getLayer(currentLayer);
   openEditPanel(`키 ${idx + 1} (L${currentLayer})`, renderKeyEditForm(layer.keys[idx], layer.macros?.[idx]));
 }
@@ -189,6 +195,7 @@ function selectEncoder(el, encIdx, dir) {
   el.classList.add('selected');
   selectedEl = el;
   selectedTarget = { type: 'encoder', encIdx, dir };
+  postSelection({ type: 'encoder', layer: currentLayer, encIdx, dir });
   const layer = getLayer(currentLayer);
   const enc = layer.encoders?.[encIdx] || {};
   openEditPanel(`Enc${encIdx === 0 ? 'L' : 'R'} ${dir}`, renderKeyEditForm(enc[dir], enc[dir + 'Macro']));

@@ -57,6 +57,19 @@ app.post('/api/keymap', (req, res) => {
   }
 });
 
+// --- Selection API (Claude Code → web UI 연동) ---
+
+let currentSelection = null;
+
+app.get('/api/selection', (req, res) => {
+  res.json(currentSelection || { type: null });
+});
+
+app.post('/api/selection', (req, res) => {
+  currentSelection = req.body;
+  res.json({ ok: true });
+});
+
 // --- Apps API ---
 
 app.get('/api/apps', (req, res) => {
