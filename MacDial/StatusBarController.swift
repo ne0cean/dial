@@ -17,6 +17,7 @@ enum ScrollDirection: String {
 enum Mode: String {
     case scrolling = "scrolling"
     case playback = "playback"
+    case appMode = "appMode"
 }
 
 enum HapticsMode: String {
@@ -76,6 +77,7 @@ extension NSMenu {
         self.addItem(items.title)
         self.addItem(items.connectionStatus)
         self.addItem(items.separator)
+        self.addItem(items.appMode)
         self.addItem(items.scrollMode)
         self.addItem(items.playbackMode)
         self.addItem(items.separator2)
@@ -115,6 +117,7 @@ class StatusBarController
         let title = NSMenuItem.init(title: "Mac Dial")
         let connectionStatus = NSMenuItem.init()
         let separator = NSMenuItem.separator()
+        let appMode = ControllerOptionItem.init(title: "App Mode (auto)", mode: .appMode, controller: AppModeController())
         let scrollMode = ControllerOptionItem.init(title: "Scroll mode", mode: .scrolling, controller: ScrollController())
         let playbackMode = ControllerOptionItem.init(title: "Playback mode", mode: .playback, controller: PlaybackController())
         let separator2 = NSMenuItem.separator()
@@ -148,31 +151,35 @@ class StatusBarController
                 return .scrolling
             case .some("playback"):
                 return .playback
+            case .some("appMode"):
+                return .appMode
             default:
-                return .scrolling
+                return .appMode  // default to App Mode
             }
         }
-        
+
         set (value) {
-            switch (value)
-            {
+            switch value {
             case .playback:
                 UserDefaults.standard.setValue("playback", forKey: "mode")
             case .scrolling:
                 UserDefaults.standard.setValue("scroll", forKey: "mode")
+            case .appMode:
+                UserDefaults.standard.setValue("appMode", forKey: "mode")
             }
         }
     }
-    
+
     var currentController: Controller
     {
         get {
-            switch (currentMode)
-            {
+            switch currentMode {
             case .playback:
                 return menuItems.playbackMode.controller
             case .scrolling:
                 return menuItems.scrollMode.controller
+            case .appMode:
+                return menuItems.appMode.controller
             }
         }
     }
@@ -274,13 +281,17 @@ class StatusBarController
         menuItems.connectionStatus.target = self
         menuItems.connectionStatus.isEnabled = false
         
+        menuItems.appMode.target = self
+        menuItems.appMode.action = #selector(setMode(sender:))
+        menuItems.appMode.selected = currentMode == .appMode
+
         menuItems.scrollMode.target = self
         menuItems.scrollMode.action = #selector(setMode(sender:))
-        menuItems.scrollMode.selected = currentMode == .scrolling;
-        
+        menuItems.scrollMode.selected = currentMode == .scrolling
+
         menuItems.playbackMode.target = self
         menuItems.playbackMode.action = #selector(setMode(sender:))
-        menuItems.playbackMode.selected = currentMode == .playback;
+        menuItems.playbackMode.selected = currentMode == .playback
         
         for option in menuItems.wheelSensitivityOptions {
             option.target = self
@@ -346,19 +357,20 @@ class StatusBarController
     }
     
     private func updateIcon() {
-        
-        if let button = statusItem.button {
-            if (menuItems.scrollMode.state == .on) {
-                button.image = #imageLiteral(resourceName: "icon-scroll")
-            }
-            else if (menuItems.playbackMode.state == .on) {
-                button.image = #imageLiteral(resourceName: "icon-playback")
-            }
-            
-            button.image?.size = NSSize(width: 18, height: 18)
-            
-            button.imagePosition = .imageLeft
+        guard let button = statusItem.button else { return }
+        switch currentMode {
+        case .appMode:
+            button.image = #imageLiteral(resourceName: "icon-scroll")  // reuse existing icon
+            button.title = "⟳"
+        case .scrolling:
+            button.image = #imageLiteral(resourceName: "icon-scroll")
+            button.title = ""
+        case .playback:
+            button.image = #imageLiteral(resourceName: "icon-playback")
+            button.title = ""
         }
+        button.image?.size = NSSize(width: 18, height: 18)
+        button.imagePosition = .imageLeft
     }
     
     @objc func showAbout(sender: AnyObject) {
@@ -366,14 +378,13 @@ class StatusBarController
     }
     
     @objc func setMode(sender: AnyObject) {
-        
         let item = sender as! ControllerOptionItem
-        
+
+        menuItems.appMode.state     = item == menuItems.appMode     ? .on : .off
+        menuItems.scrollMode.state  = item == menuItems.scrollMode  ? .on : .off
         menuItems.playbackMode.state = item == menuItems.playbackMode ? .on : .off
-        menuItems.scrollMode.state = item == menuItems.scrollMode ? .on : .off
-        
+
         currentMode = item.option
-        
         updateIcon()
     }
     

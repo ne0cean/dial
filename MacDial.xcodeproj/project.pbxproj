@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB68A81A81BDD7080BC5420A /* AppModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533E0A230637A28820F16011 /* AppModeController.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
 		C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA1D26F1430D00595EE1 /* Assets.xcassets */; };
 		C882FA2126F1430D00595EE1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2026F1430D00595EE1 /* Preview Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		533E0A230637A28820F16011 /* AppModeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MacDial/AppModeController.swift; sourceTree = SOURCE_ROOT; };
 		C882FA1626F1430C00595EE1 /* MacDial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacDial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C882FA1D26F1430D00595EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				C89F31582701090400A8B365 /* Dial.swift */,
 				C89D242A2703CF4500B1A458 /* ScrollController.swift */,
 				C89D242C2704870C00B1A458 /* PlaybackController.swift */,
+				533E0A230637A28820F16011 /* AppModeController.swift */,
 			);
 			path = MacDial;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				C89D242D2704870C00B1A458 /* PlaybackController.swift in Sources */,
 				C89F31592701090400A8B365 /* Dial.swift in Sources */,
 				C89D242B2703CF4500B1A458 /* ScrollController.swift in Sources */,
+				BB68A81A81BDD7080BC5420A /* AppModeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
